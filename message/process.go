@@ -44,7 +44,9 @@ func Process() error {
 		if err != nil {
 			return err
 		}
+
 		p.Content = text
+
 		err1 := sendMessage(p)
 		if err1 != nil {
 			return err1

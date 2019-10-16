@@ -24,7 +24,7 @@ func createEmbed() EmbedObject {
 
 	// Compose description.
 	var description string
-	// ToDo: promote/rollback?
+	// Add promote/rollback?
 	switch env.Data.Drone.Build.Event {
 	case "pull_request":
 		var branch string
@@ -33,6 +33,7 @@ func createEmbed() EmbedObject {
 		} else {
 			branch = env.Data.Drone.Commit.Branch
 		}
+
 		description = env.Data.Drone.Commit.Author.Name + " updated pull request " + branch
 	case "push":
 		description = env.Data.Drone.Commit.Author.Name + " pushed to " + env.Data.Drone.Commit.Branch
@@ -44,14 +45,15 @@ func createEmbed() EmbedObject {
 
 	// Compose color.
 	var color int64
+
 	if env.Data.Plugin.Color != "" {
 		env.Data.Plugin.Color = strings.Replace(env.Data.Plugin.Color, "#", "", -1)
+
 		s, err := strconv.ParseInt(env.Data.Plugin.Color, 16, 32)
 		if err == nil {
 			color = s
 		}
 	} else {
-
 		switch env.Data.Drone.Build.Status {
 		case "success":
 			// green

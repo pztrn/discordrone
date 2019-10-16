@@ -12,6 +12,7 @@ import (
 
 func main() {
 	env.ParseEnv()
+
 	if env.Data.Debug {
 		log.Printf("Starting Discordrone with parameters: %+v\n", env.Data)
 	}

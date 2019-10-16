@@ -140,6 +140,7 @@ type environmentData struct {
 
 func ParseEnv() {
 	Data = &environmentData{}
+
 	err := envconfig.Init(Data)
 	if err != nil {
 		fmt.Println(err)

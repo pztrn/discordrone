@@ -3,11 +3,11 @@ package message
 type (
 	// Payload that will be sent to Discord.
 	payload struct {
+		TTS       bool          `json:"tts"`
 		Wait      bool          `json:"wait"`
+		AvatarURL string        `json:"avatar_url"`
 		Content   string        `json:"content"`
 		Username  string        `json:"username"`
-		AvatarURL string        `json:"avatar_url"`
-		TTS       bool          `json:"tts"`
 		Embeds    []EmbedObject `json:"embeds"`
 	}
 
