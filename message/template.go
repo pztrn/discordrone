@@ -13,7 +13,7 @@ const (
 	// DroneIconURL default drone logo url
 	droneIconURL = "https://c1.staticflickr.com/5/4236/34957940160_435d83114f_z.jpg"
 	// DroneDesc default drone description
-	droneDesc = "Powered by DiscoDrone Plugin"
+	droneDesc = "Powered by DiscorDrone Plugin"
 )
 
 func createEmbed() EmbedObject {
@@ -54,25 +54,28 @@ func createEmbed() EmbedObject {
 	embed.Description = description
 
 	// Compose color.
-	var color int
+	var color int64
 	if env.Data.Plugin.Color != "" {
 		env.Data.Plugin.Color = strings.Replace(env.Data.Plugin.Color, "#", "", -1)
-		if s, err := strconv.ParseInt(env.Data.Plugin.Color, 16, 32); err == nil {
-			color = int(s)
+		s, err := strconv.ParseInt(env.Data.Plugin.Color, 16, 32)
+		if err == nil {
+			color = s
+		}
+	} else {
+
+		switch env.Data.Drone.Build.Status {
+		case "success":
+			// green
+			color = 0x1ac600
+		case "failure", "error", "killed":
+			// red
+			color = 0xff3232
+		default:
+			// yellow
+			color = 0xffd930
 		}
 	}
 
-	switch env.Data.Drone.Build.Status {
-	case "success":
-		// green
-		color = 0x1ac600
-	case "failure", "error", "killed":
-		// red
-		color = 0xff3232
-	default:
-		// yellow
-		color = 0xffd930
-	}
 	embed.Color = color
 
 	return embed

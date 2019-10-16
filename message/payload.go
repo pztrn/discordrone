@@ -35,7 +35,7 @@ type (
 		Title       string             `json:"title"`
 		Description string             `json:"description"`
 		URL         string             `json:"url"`
-		Color       int                `json:"color"`
+		Color       int64              `json:"color"`
 		Footer      EmbedFooterObject  `json:"footer"`
 		Author      EmbedAuthorObject  `json:"author"`
 		Fields      []EmbedFieldObject `json:"fields"`

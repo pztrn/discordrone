@@ -40,7 +40,7 @@ func Process() error {
 
 	// If message was set - format it.
 	if len(env.Data.Plugin.Message) > 0 {
-		text, err := template.RenderTrim(env.Data.Plugin.Message, env.Data)
+		text, err := template.RenderTrim(env.Data.Plugin.Message, env.Data.Drone)
 		if err != nil {
 			return err
 		}

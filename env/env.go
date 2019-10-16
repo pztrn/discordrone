@@ -17,15 +17,15 @@ type environmentData struct {
 	Drone struct {
 		Branch string `envconfig:"optional"`
 		Build  struct {
-			Action   string `envconfig:"optional"`
-			Created  int    `envconfig:"optional"`
-			Event    string `envconfig:"optional"`
-			Finished int    `envconfig:"optional"`
-			Link     string `envconfig:"optional"`
-			Number   int    `envconfig:"optional"`
-			Parent   string `envconfig:"optional"`
-			Started  int    `envconfig:"optional"`
-			Status   string `envconfig:"optional"`
+			Action   string  `envconfig:"optional"`
+			Created  float64 `envconfig:"optional"`
+			Event    string  `envconfig:"optional"`
+			Finished float64 `envconfig:"optional"`
+			Link     string  `envconfig:"optional"`
+			Number   int     `envconfig:"optional"`
+			Parent   string  `envconfig:"optional"`
+			Started  float64 `envconfig:"optional"`
+			Status   string  `envconfig:"optional"`
 		}
 		CommitHash string `envconfig:"DRONE_COMMIT,optional"`
 		Commit     struct {
