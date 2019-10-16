@@ -9,13 +9,6 @@ import (
 	"go.dev.pztrn.name/discordrone/env"
 )
 
-const (
-	// DroneIconURL default drone logo url
-	droneIconURL = "https://c1.staticflickr.com/5/4236/34957940160_435d83114f_z.jpg"
-	// DroneDesc default drone description
-	droneDesc = "Powered by DiscorDrone Plugin"
-)
-
 func createEmbed() EmbedObject {
 	// Create initial payload object.
 	// Description.
@@ -26,10 +19,6 @@ func createEmbed() EmbedObject {
 		Author: EmbedAuthorObject{
 			Name:    env.Data.Drone.Commit.Author.Name,
 			IconURL: env.Data.Drone.Commit.Author.Avatar,
-		},
-		Footer: EmbedFooterObject{
-			Text:    droneDesc,
-			IconURL: droneIconURL,
 		},
 	}
 

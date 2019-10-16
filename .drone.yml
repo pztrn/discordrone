@@ -23,7 +23,6 @@ steps:
   - name: test
     image: golang:1.13.1-alpine
     environment:
-      GOFLAGS: -mod=vendor
       CGO_ENABLED: 0
     commands:
       - go test ./...
