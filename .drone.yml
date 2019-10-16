@@ -19,6 +19,8 @@ steps:
       CGO_ENABLED: 0
     commands:
       - golangci-lint run
+    depends_on:
+      - notify-start
 
   - name: test
     image: golang:1.13.1-alpine
@@ -26,6 +28,8 @@ steps:
       CGO_ENABLED: 0
     commands:
       - go test ./...
+    depends_on:
+      - notify-start
 
   - name: docker
     image: plugins/docker
@@ -39,6 +43,9 @@ steps:
         from_secret: dockerhub_password
       repo: pztrn/discordrone
       auto_tag: true
+    depends_on:
+      - test
+      - lint
 
   - name: notify-end
     when:
@@ -57,3 +64,5 @@ steps:
         {{ else }}
           **{{repo.name}}#{{build.number}}@{{commit.sha}}** failed. See {{build.link}}.
         {{/success}}"
+    depends_on:
+      - docker
