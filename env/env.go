@@ -1,10 +1,11 @@
 package env
 
 import (
+	// stdlib
+	"fmt"
+
 	// other
 	"github.com/vrischmann/envconfig"
-
-	"fmt"
 )
 
 var Data *environmentData
@@ -17,15 +18,18 @@ type environmentData struct {
 	Drone struct {
 		Branch string `envconfig:"optional"`
 		Build  struct {
-			Action   string  `envconfig:"optional"`
-			Created  float64 `envconfig:"optional"`
-			Event    string  `envconfig:"optional"`
-			Finished float64 `envconfig:"optional"`
-			Link     string  `envconfig:"optional"`
-			Number   int     `envconfig:"optional"`
-			Parent   string  `envconfig:"optional"`
-			Started  float64 `envconfig:"optional"`
-			Status   string  `envconfig:"optional"`
+			Action      string  `envconfig:"optional"`
+			Created     float64 `envconfig:"optional"`
+			CreatedInt  int     `envconfig:"optional"`
+			Event       string  `envconfig:"optional"`
+			Finished    float64 `envconfig:"optional"`
+			FinishedInt int     `envconfig:"optional"`
+			Link        string  `envconfig:"optional"`
+			Number      int     `envconfig:"optional"`
+			Parent      string  `envconfig:"optional"`
+			Started     float64 `envconfig:"optional"`
+			StartedInt  int     `envconfig:"optional"`
+			Status      string  `envconfig:"optional"`
 		}
 		CommitHash string `envconfig:"DRONE_COMMIT,optional"`
 		Commit     struct {
@@ -140,4 +144,10 @@ func ParseEnv() {
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+
+func (ed *environmentData) ConvertFloatToInts() {
+	ed.Drone.Build.CreatedInt = int(ed.Drone.Build.Created)
+	ed.Drone.Build.FinishedInt = int(ed.Drone.Build.Finished)
+	ed.Drone.Build.StartedInt = int(ed.Drone.Build.Started)
 }

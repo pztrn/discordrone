@@ -53,7 +53,7 @@ steps:
         from_secret: discord_webhook_secret
       message: "
         {{#success build.status}}
-          **{{repo.name}}#{{build.number}}@{{commit.sha}}** built in {{since build.started}} and pushed to hub.docker.com.
+          **{{repo.name}}#{{build.number}}@{{commit.sha}}** built in {{since build.startedint}} and pushed to hub.docker.com.
         {{ else }}
           **{{repo.name}}#{{build.number}}@{{commit.sha}}** failed. See {{build.link}}.
         {{/success}}"
