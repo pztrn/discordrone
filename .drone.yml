@@ -10,8 +10,6 @@ steps:
       CGO_ENABLED: 0
     commands:
       - golangci-lint run
-    depends_on:
-      - notify-start
 
   - name: test
     image: golang:1.13.1-alpine
@@ -19,8 +17,6 @@ steps:
       CGO_ENABLED: 0
     commands:
       - go test ./...
-    depends_on:
-      - notify-start
 
   - name: docker
     image: plugins/docker
